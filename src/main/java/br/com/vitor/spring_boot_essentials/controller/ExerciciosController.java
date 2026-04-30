@@ -1,0 +1,38 @@
+package br.com.vitor.spring_boot_essentials.controller;
+
+import br.com.vitor.spring_boot_essentials.database.model.ExerciciosEntity;
+import br.com.vitor.spring_boot_essentials.dto.ExerciciosDTO;
+import br.com.vitor.spring_boot_essentials.service.ExerciciosService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/v1/exercicios")
+@RequiredArgsConstructor
+public class ExerciciosController {
+
+    private final ExerciciosService exerciciosService;
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<ExerciciosEntity> findAll(){
+        return exerciciosService.findAll();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveExercicio(@Valid @RequestBody ExerciciosDTO exerciciosDTO){
+        exerciciosService.save(exerciciosDTO);
+    }
+
+    @GetMapping("/grupos/{grupoMuscular}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ExerciciosEntity> getExerciciosByGrupoMuscular(@PathVariable String grupoMuscular){
+        return exerciciosService.getExerciciosByGrupoMuscular(grupoMuscular);
+    }
+
+}
