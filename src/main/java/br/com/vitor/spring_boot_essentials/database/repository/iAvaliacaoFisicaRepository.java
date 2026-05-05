@@ -14,24 +14,24 @@ public interface iAvaliacaoFisicaRepository extends JpaRepository<AvaliacaoFisic
 
     @NativeQuery(value = """
     SELECT a.id idAluno,
-           a.nome nomeAluno,
+           a.name nomeAluno,
            af.id idAvaliacao,
            af.peso peso,
            af.altura altura,
-           af.percentual_gordura_corporal percentualGorduraCorporal
-    FROM tb_avaliacoes_fisicas af
-    INNER JOIN tb_alunos a
+           af.porcentagem_gordura_corporal percentualGorduraCorporal
+    FROM avaliacoes_fisicas af
+    INNER JOIN alunos a
         ON a.id = af.aluno_id
 """)
     List<AvaliacoesFisicasProjection> getAllAvaliacoes();
 
     @NativeQuery(value = """
     SELECT a.id idAluno,
-           a.nome nomeAluno,
+           a.name nomeAluno,
            af.id idAvaliacao,
            af.peso peso,
            af.altura altura,
-           af.percentual_gordura_corporal percentualGorduraCorporal
+           af.porcentagem_gordura_corporal percentualGorduraCorporal
     FROM avaliacoes_fisicas af
     INNER JOIN alunos a
         ON a.id = af.aluno_id

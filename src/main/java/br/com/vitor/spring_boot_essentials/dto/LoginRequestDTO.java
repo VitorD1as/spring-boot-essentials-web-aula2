@@ -1,0 +1,17 @@
+package br.com.vitor.spring_boot_essentials.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+public class LoginRequestDTO {
+    @NotBlank
+    private String email;
+    @NotBlank
+    private String senha;
+}

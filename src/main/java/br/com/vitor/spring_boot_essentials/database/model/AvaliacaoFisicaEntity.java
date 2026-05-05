@@ -22,4 +22,8 @@ public class AvaliacaoFisicaEntity {
     private BigDecimal altura;
     @Column(name = "porcentagem_gordura_corporal", nullable = false)
     private BigDecimal porcentagemGorduraCorporal;
+
+    @ManyToOne
+    @JoinColumn(name = "aluno_id") // 👈 cria a FK no banco
+    private AlunosEntity aluno;
 }
